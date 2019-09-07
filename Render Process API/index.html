@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+
+    <button type="button" name="button" id="test-button">Test it</button>
+    <br>
+
+    <h3><a href="#" onclick="newWin()">New Window</a></h3>
+    <h3><a href="#" onclick="closeWin()">Close Window</a></h3>
+    <h3><a href="#" onclick="styleWin()">Bad Fonts</a></h3>
+
+    <br>
+
+    <img src="https://placekitten.com/450/300" alt="">
+    <br>
+    <button onclick="zoomUp()">Increase Zoom</button>
+    <button onclick="zoomDown()">Decrease Zoom</button>
+    <button onclick="zoomReset()">Reset Zoom</button>
+
+    <img src="" width="100%" id="screenshot" alt=""><br>
+    <button id="screenshot-button">Get screenshot</button>
+
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <strong><script>document.write( process.versions.node)</script></strong>,
+    and Electron <strong><script>document.write( process.versions.electron )</script></strong>.
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+      let win;
+      const newWin = () => {
+        win = window.open('https://electronjs.org', '_blank', 'width=500,height=450,alwaysOnTop=1');
+      }
+
+      const closeWin = () => {
+        win.close();
+      }
+
+      const styleWin = () => {
+        win.eval("document.getElementsByTagName('body')[0].style.fontFamily = 'Comic Sans MS'");
+      }
+
+      const { webFrame } = require('electron')
+
+      const zoomUp = () => {
+        webFrame.setZoomLevel(webFrame.getZoomFactor() + 1);
+      }
+      const zoomDown = () => {
+        webFrame.setZoomLevel(webFrame.getZoomFactor() - 1);
+      }
+      const zoomReset = () => {
+        webFrame.setZoomLevel(1);
+      }
+
+      console.log(webFrame.getResourceUsage());
+      
+    </script>
+  </body>
+</html>
