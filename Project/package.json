@@ -1,0 +1,42 @@
+{
+  "name": "Readit",
+  "version": "1.0.0",
+  "description": "Master Electron Project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "watch": "nodemon --exec electron .",
+    "reset": "git reset --hard",
+    "build": "electron-builder -w",
+    "win-cert": "electron-builder create-self-signed-cert -p Zack"
+  },
+  "repository": "https://github.com/aventador2018/Master-Electron",
+  "keywords": [
+    "Electron",
+    "Master Electron",
+    "demo"
+  ],
+  "author": "Zack",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^5.0.0",
+    "electron-builder": "^21.2.0",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
+  },
+  "build": {
+    "appId": "com.zack.readit",
+    "copyright": "Copyright 2019 Zack",
+    "mac": {},
+    "win": {
+      "icon": "build/icon.ico",
+      "certificateFile": "private/Zack.pfx",
+      "certificatePassword": "",
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "Zack"
+    },
+    "linux": {}
+  }
+}
